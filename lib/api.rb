@@ -7,6 +7,10 @@ class API
         uri = URI(url)
         response = Net::HTTP.get(uri)
         formatted_response = JSON.parse(response)
-        teams_array = hash("teams")
+        teams_array = formatted_response["teams"]
+        teams_array.each do |team| 
+            #id, city, conference, division, team
+            Model.new(team["id"], team["city"], team["conference"], team["division"], team["team"])
+        end
     end
 end
