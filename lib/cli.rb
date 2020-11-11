@@ -2,10 +2,10 @@
 # interacts with user and connects our files together
 class CLI
 
-    def start
-        puts "Greetings, user."
+    def self.begin
+        puts "We'll take it from here."
         API.start
-        self.menu
+        menu
     end
 
     def menu
@@ -14,6 +14,11 @@ class CLI
         user_input = gets.strip.downcase
         if user_input == 'city'
             puts "Here's a list of NBA cities:"
+        else
+            #ending the program
+            puts "Thank you for your service."
         end
     end
 end
+
+# "The #{team} play in #{city}. They are a part of the #{division} in the #{conference} conference."
