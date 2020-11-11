@@ -1,5 +1,7 @@
+# leave off type of code from name of executable file, use shebang line to tell what type of code we're using
+
 #!/usr/bin/env ruby
 
-require_relative "../environment"
+require_relative "../environment" #requires file in same folder (double . goes from inside bin folder to inside phase 1 folder)
 
 API.start
