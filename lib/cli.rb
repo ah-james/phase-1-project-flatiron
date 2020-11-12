@@ -3,13 +3,13 @@
 class CLI
 
     def self.begin
-        puts "We'll take it from here."
+        puts "I hear you're looking for some NBA team information."
         API.start
         menu
     end
 
     def self.menu
-        puts "Do you want to search by city, conference, division, or team name?"
+        puts "How would you like to search?"
         puts "Please type 'city', 'conference', 'division', or 'team'."
         user_input = gets.strip.downcase
         if user_input == 'city'
@@ -20,9 +20,11 @@ class CLI
             puts "Which Division would you like to search in?"
         elsif user_input == 'team'
             puts "Which team do you want to know more about?"
+        elsif user_input == 'exit'
+            puts "Goodbye!"
         else
-            #ending the program
-            puts "Thank you for your service."
+            #restarting the program
+            menu
         end
     end
 end
