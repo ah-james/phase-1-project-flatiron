@@ -17,9 +17,9 @@ class CLI
         elsif user_input == 'conference'
             puts "Which Conference would you like to search in?"
         elsif user_input == 'division'
-            "Which Division would you like to search in?"
+            puts "Which Division would you like to search in?"
         elsif user_input == 'team'
-            "Which team do you want to know more about?"
+            puts "Which team do you want to know more about?"
         else
             #ending the program
             puts "Thank you for your service."
