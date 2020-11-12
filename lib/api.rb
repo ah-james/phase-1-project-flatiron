@@ -11,6 +11,5 @@ class API
         teams_array.each do |team|
             Teams.new(team)
         end
-        binding.pry
     end
 end

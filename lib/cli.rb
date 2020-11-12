@@ -8,12 +8,18 @@ class CLI
         menu
     end
 
-    def menu
+    def self.menu
         puts "Do you want to search by city, conference, division, or team name?"
         puts "Please type 'city', 'conference', 'division', or 'team'."
         user_input = gets.strip.downcase
         if user_input == 'city'
             puts "Here's a list of NBA cities:"
+        elsif user_input == 'conference'
+            puts "Which Conference would you like to search in?"
+        elsif user_input == 'division'
+            "Which Division would you like to search in?"
+        elsif user_input == 'team'
+            "Which team do you want to know more about?"
         else
             #ending the program
             puts "Thank you for your service."
@@ -21,4 +27,6 @@ class CLI
     end
 end
 
-# "The #{team} play in #{city}. They are a part of the #{division} in the #{conference} conference."
+    def final_message 
+        "The #{team} play in #{city}. They are a part of the #{division} in the #{conference} conference."
+    end
