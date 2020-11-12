@@ -30,22 +30,25 @@ class CLI
 
     def self.array_of_cities
         puts "Please select one of the following cities:"
+        Teams.all.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
     end
 
     def self.array_of_conferences
-        puts "Which Conference would you like to search in?"
+        puts "Which conference would you like to search in?"
+        Teams.all.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
     end
 
     def self.array_of_divisions
-        puts "Which Division would you like to search in?"
+        puts "Which division would you like to search in?"
+        Teams.all.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
     end
 
     def self.array_of_teams
         puts "Which team do you want to know more about?"
-            Teams.all.each_with_index { |key, value| puts "#{value}. #{key.name}" }
+        Teams.all.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
     end
 
-    def final_message 
+    def self.final_message 
         "The #{team} play in #{city}. They are a part of the #{division} in the #{conference} conference."
     end
 end

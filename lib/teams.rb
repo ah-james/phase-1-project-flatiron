@@ -1,7 +1,7 @@
 # your stand OO ruby class
 
 class Teams
-    attr_accessor :id, :city, :conference, :division, :name
+#    attr_accessor :id, :city, :conference, :division, :name
 
     @@all = []
 
@@ -16,5 +16,4 @@ class Teams
     def self.all
         @@all
     end
-
 end
