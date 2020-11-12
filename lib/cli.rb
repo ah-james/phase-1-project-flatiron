@@ -28,20 +28,21 @@ class CLI
         end
     end
 
-    def array_of_cities
-        puts "Here's a list of NBA cities:"
+    def self.array_of_cities
+        puts "Please select one of the following cities:"
     end
 
-    def array_of_conferences
+    def self.array_of_conferences
         puts "Which Conference would you like to search in?"
     end
 
-    def array_of_divisions
+    def self.array_of_divisions
         puts "Which Division would you like to search in?"
     end
 
-    def array_of_teams
+    def self.array_of_teams
         puts "Which team do you want to know more about?"
+            Teams.all.each_with_index { |key, value| puts "#{value}. #{key.name}" }
     end
 
     def final_message 
