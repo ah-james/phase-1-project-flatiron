@@ -13,14 +13,13 @@ class CLI
         puts "Please type 'city', 'conference', 'division', or 'team'."
         user_input = gets.strip.downcase
         if user_input == 'city'
-            array_of_cities
+            city_array
         elsif user_input == 'conference'
-            array_of_conferences
+            conference_array
         elsif user_input == 'division'
-            array_of_divisions
+            division_array
         elsif user_input == 'team'
-            array_of_teams
-            user_response
+            team_array
         elsif user_input == 'exit'
             puts "Goodbye!"
         else
@@ -38,30 +37,33 @@ class CLI
             index = gets.strip.to_i - 1
         end
         team_instance = Teams.all[index]
-        puts final_message
     end
 
-    def self.array_of_cities
+    def self.city_array
         puts "Please select one of the following cities:"
-        Teams.cities.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
+        Teams.city.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
+        user_response
     end
 
-    def self.array_of_conferences
+    def self.conference_array
         puts "Which conference would you like to search in?"
-        Teams.conferences.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
+        Teams.conference.uniq.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
+        user_response
     end
 
-    def self.array_of_divisions
+    def self.division_array
         puts "Which division would you like to search in?"
-        Teams.divisions.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
+        Teams.division.uniq.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
+        user_response
     end
 
-    def self.array_of_teams
+    def self.team_array
         puts "Which team do you want to know more about?"
-        Teams.all.each_with_index { |key, value| puts "#{value + 1}. #{key.name}" }
+        Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
+        user_response
     end
 
     def self.final_message
-        puts "The #{self.team} play in #{self.city}. They are a part of the #{self.divison} in the #{self.conference} conference."
+        puts "The #{Teams.name.to_s} play in #{Teams.city.to_s}. They are a part of the #{Teams.division.to_s} in the #{Teams.conference.to_s} conference."
     end
 end

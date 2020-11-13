@@ -4,6 +4,7 @@ class Teams
 #    attr_accessor :id, :city, :conference, :division, :name
 
     @@all = []
+    @@name = []
     @@city = []
     @@conference = []
     @@division = []
@@ -14,6 +15,7 @@ class Teams
             self.send(("#{key}="), value)
         end
         @@all << self
+        @@name << self.name
         @@city << self.city
         @@conference << self.conference
         @@division << self.division
@@ -23,15 +25,19 @@ class Teams
         @@all
     end
 
-    def self.cities
+    def self.name
+        @@name
+    end
+
+    def self.city
         @@city
     end
 
-    def self.conferences
+    def self.conference
         @@conference
     end
 
-    def self.divisions
+    def self.division
         @@division
     end
 end
