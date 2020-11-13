@@ -20,12 +20,26 @@ class CLI
             array_of_divisions
         elsif user_input == 'team'
             array_of_teams
+            user_response
+            final_message
         elsif user_input == 'exit'
             puts "Goodbye!"
         else
             #restarting the program
             menu
         end
+    end
+
+    def self.user_response
+        index = gets.strip.to_i - 1
+        max_limit = Teams.all.length - 1
+        unless index.between?(0, max_limit)
+            puts "There isn't a team that corresponds with that number!"
+            user_response
+            index = gets.strip.to_i - 1
+        end
+        team_instance = Teams.all[index]
+        puts team_instance.name 
     end
 
     def self.array_of_cities
@@ -49,6 +63,6 @@ class CLI
     end
 
     def self.final_message 
-        "The #{team} play in #{city}. They are a part of the #{division} in the #{conference} conference."
+        puts "The #{Teams.team} play in #{Teams.city}. They are a part of the #{Teams.division} in the #{Teams.conference} conference."
     end
 end

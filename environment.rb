@@ -1,4 +1,4 @@
-#require all of our files so they can talk to each other
+#require all files so they can talk to each other
 
 require 'bundler'
 Bundler.require # requires all gems listed in the Gemfile
