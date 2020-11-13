@@ -32,38 +32,41 @@ class CLI
         index = gets.strip.to_i - 1
         max_limit = Teams.all.length - 1
         unless index.between?(0, max_limit)
-            puts "There isn't a team that corresponds with that number!"
+            puts "That number isn't an option!"
             user_response
             index = gets.strip.to_i - 1
         end
         team_instance = Teams.all[index]
+        puts "show shorter list of teams"
     end
 
     def self.city_array
-        puts "Please select one of the following cities:"
+        puts "Please select one of the following cities with the corresponding number:"
         Teams.city.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
         user_response
     end
 
     def self.conference_array
-        puts "Which conference would you like to search in?"
+        puts "Which conference would you like to search in? Please enter a number:"
         Teams.conference.uniq.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
         user_response
     end
 
     def self.division_array
-        puts "Which division would you like to search in?"
+        puts "Which division would you like to search in? Please enter a number:"
         Teams.division.uniq.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
         user_response
     end
 
     def self.team_array
-        puts "Which team do you want to know more about?"
+        puts "Which team do you want to know more about? Please enter a number:"
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_response
+        user_input = gets.strip.to_i
+        team_instance = Teams.all[user_input]
+        final_message(team_instance)
     end
 
-    def self.final_message
-        puts "The #{Teams.name.to_s} play in #{Teams.city.to_s}. They are a part of the #{Teams.division.to_s} in the #{Teams.conference.to_s} conference."
+    def self.final_message(team_instance)
+        puts "The #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference."
     end
 end

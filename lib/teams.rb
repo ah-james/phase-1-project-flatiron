@@ -1,7 +1,7 @@
 # your stand OO ruby class
 
 class Teams
-#    attr_accessor :id, :city, :conference, :division, :name
+#    attributes city, conference, division, name
 
     @@all = []
     @@name = []
