@@ -24,6 +24,7 @@ class CLI
             puts "Goodbye!"
         else
             #restarting the program
+            puts "Please try again."
             menu
         end
     end
@@ -32,12 +33,12 @@ class CLI
         index = gets.strip.to_i - 1
         max_limit = Teams.all.length - 1
         unless index.between?(0, max_limit)
-            puts "That number isn't an option!"
+            puts "That number isn't an option, try again!"
             user_response
             index = gets.strip.to_i - 1
         end
         team_instance = Teams.all[index]
-        puts "show shorter list of teams"
+        final_message(team_instance)
     end
 
     def self.city_array
@@ -61,12 +62,20 @@ class CLI
     def self.team_array
         puts "Which team do you want to know more about? Please enter a number:"
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_input = gets.strip.to_i
+        user_input = gets.strip.to_i - 1
         team_instance = Teams.all[user_input]
         final_message(team_instance)
     end
 
     def self.final_message(team_instance)
         puts "The #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference."
+        puts "Would you like to go again? Yes or No:"
+        user_input = gets.strip.downcase
+            if user_input == 'yes'
+                menu
+            else
+                puts "Goodbye!"
+                exit
+        end
     end
 end
