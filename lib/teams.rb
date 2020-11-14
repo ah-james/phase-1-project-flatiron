@@ -17,8 +17,8 @@ class Teams
         @@all << self
         @@name << self.name
         @@city << self.city
-        @@conference << self.conference
-        @@division << self.division
+        @@division = self.division
+        @@conference = self.conference
     end
 
     def self.all
@@ -33,11 +33,11 @@ class Teams
         @@city
     end
 
-    def self.conference
-        @@conference
-    end
-
     def self.division
         @@division
+    end
+
+    def self.conference
+        @@conference
     end
 end

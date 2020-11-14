@@ -4,4 +4,4 @@
 
 require_relative "../environment" #requires file in same folder (double . goes from inside bin folder to inside phase 1 folder)
 
-CLI.begin
+CLI.new
