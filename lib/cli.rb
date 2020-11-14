@@ -30,14 +30,13 @@ class CLI
     end
 
     def self.user_response
-        index = gets.strip.to_i - 1
+        response = gets.strip.to_i - 1
         max_limit = Teams.all.length - 1
-        unless index.between?(0, max_limit)
+        unless response.between?(0, max_limit)
             puts "That number isn't an option, try again!"
             user_response
-            index = gets.strip.to_i - 1
         end
-        team_instance = Teams.all[index]
+        team_instance = Teams.all[response]
         final_message(team_instance)
     end
 
@@ -62,9 +61,7 @@ class CLI
     def self.team_array
         puts "Which team do you want to know more about? Please enter a number:"
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_input = gets.strip.to_i - 1
-        team_instance = Teams.all[user_input]
-        final_message(team_instance)
+        user_response
     end
 
     def self.final_message(team_instance)
@@ -73,9 +70,11 @@ class CLI
         user_input = gets.strip.downcase
             if user_input == 'yes'
                 menu
-            else
+            elsif user_input == 'no'
                 puts "Goodbye!"
                 exit
+            else
+                puts "That wasn't an option. Please put yes or no:"
         end
     end
 end
