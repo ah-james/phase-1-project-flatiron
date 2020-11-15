@@ -13,9 +13,9 @@ class CLI
         puts "Please type 'team' or 'hometown'."
         user_input = gets.strip.downcase
         if user_input == 'hometown'
-            hometowns_array
+            hometowns_array #send to search through cities
         elsif user_input == 'team'
-            team_array
+            team_array #send to search thru teams
         elsif user_input == 'exit'
             puts "Goodbye!"
         else
@@ -27,16 +27,34 @@ class CLI
     end
 
     def hometowns_array
-        puts "Please select one of the following cities with the corresponding number:"
+        puts "Here are the cities that NBA teams play in:"
         hometowns
     end
 
     def hometowns
         Teams.hometown.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_response
+        return_to_menu
+    end
+
+    def return_to_menu
+        puts ''
+        puts "If you want to return to the menu, type 'menu', if you want to quit the program, type 'exit', if you want to continue, type 'continue'."
+        user_input = gets.strip.downcase
+        if user_input == 'menu'
+            menu
+        elsif user_input == 'exit'
+            puts "Goodbye!"
+            exit
+        elsif user_input == 'continue'
+            user_response
+        else
+            puts "please use a valid option"
+            return_to_menu
+        end
     end
 
     def user_response
+        puts "Please input a number!"
         response = gets.strip.to_i - 1
         max_limit = Teams.all.length - 1
         unless response.between?(0, max_limit)
@@ -49,9 +67,13 @@ class CLI
     end
 
     def team_array
-        puts "Which team do you want to know more about? Please enter a number or type 0 to exit:"
+        puts "Here are the teams that play in the NBA:"
+        teams
+    end
+
+    def teams
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_response
+        return_to_menu
     end
 
     def final_message(team_instance)
@@ -65,7 +87,7 @@ class CLI
         puts "Would you like to see your team's rivals? Yes or No:"
         user_input = gets.strip.downcase
         if user_input == 'yes'
-            final_teams_rivals(team_instance)
+            final_team_rivals(team_instance)
         elsif user_input == 'no'
             final_question
         else
@@ -75,8 +97,9 @@ class CLI
         end
     end
 
-    def final_teams_rivals(team_instance)
-        binding.pry
+    def final_team_rivals(team_instance)
+        puts "Your team's rivals are:"
+        Teams.in_division
     end
 
     def final_question
