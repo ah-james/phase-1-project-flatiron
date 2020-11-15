@@ -5,9 +5,7 @@ class Teams
 
     @@all = []
     @@name = []
-    @@city = []
-    @@conference = []
-    @@division = []
+    @@hometown = []
 
     def initialize(attributes)
         attributes.each do |key, value| 
@@ -16,9 +14,7 @@ class Teams
         end
         @@all << self
         @@name << self.name
-        @@city << self.city
-        @@division << self.division
-        @@conference << self.conference
+        @@hometown << self.hometown
     end
 
     def self.all
@@ -29,15 +25,7 @@ class Teams
         @@name
     end
 
-    def self.city
-        @@city
-    end
-
-    def self.division
-        @@division
-    end
-
-    def self.conference
-        @@conference
+    def self.hometown
+        @@hometown
     end
 end
