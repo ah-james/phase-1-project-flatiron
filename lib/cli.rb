@@ -98,8 +98,15 @@ class CLI
     end
 
     def final_team_rivals(team_instance)
-        puts "Your team's rivals are:"
-        Teams.in_division
+        puts "Your team's rivals are the:"
+        Teams.all.each do |team|
+            if team.name == team_instance.name
+                next
+            end
+            if team.division == team_instance.division
+                puts team.name
+            end
+        end
     end
 
     def final_question

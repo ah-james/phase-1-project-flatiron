@@ -34,8 +34,4 @@ class Teams
     def self.division
         @@division
     end
-
-    def self.in_division
-
-    end
 end
