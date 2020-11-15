@@ -14,7 +14,7 @@ class Teams
         end
         @@all << self
         @@name << self.name
-        @@hometown << self.hometown
+        @@hometown << self.city
     end
 
     def self.all

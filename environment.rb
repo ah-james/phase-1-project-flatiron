@@ -7,3 +7,4 @@ Bundler.require # requires all gems listed in the Gemfile
 require_relative "./lib/api" 
 require_relative "./lib/cli"
 require_relative "./lib/teams"
+require_relative "./lib/players"

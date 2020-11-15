@@ -10,9 +10,9 @@ class CLI
 
     def menu
         puts "How would you like to search?"
-        puts "Please type 'city' or 'hometown'."
+        puts "Please type 'team' or 'hometown'."
         user_input = gets.strip.downcase
-        if user_input == 'city'
+        if user_input == 'hometown'
             city_array
         elsif user_input == 'team'
             team_array
@@ -60,7 +60,18 @@ class CLI
         puts ''
         puts "The #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference."
         puts ''
-        puts "Would you like to go again? Yes or No:"
+        puts "Would you like to see your team's rivals?"
+        team_rivals(team_instance)
+    end
+
+    def team_rivals(team_instance)
+        division = team_instance.division
+        binding.pry
+        division.name
+    end
+end
+
+=begin         puts "Would you like to go again? Yes or No:"
         user_input = gets.strip.downcase
             if user_input == 'yes'
                 menu
@@ -70,6 +81,5 @@ class CLI
             else
                 puts "That wasn't an option. Please put yes or no:"
                 final_message(team_instance)
-        end
-    end
-end
+=end
+
