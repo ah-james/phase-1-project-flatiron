@@ -46,7 +46,7 @@ class CLI
         elsif user_input == 'continue'
             user_response
         else
-            puts "\nplease use a valid option"
+            puts "\nPlease use a valid option"
             return_to_menu
         end
     end
@@ -75,7 +75,7 @@ class CLI
     end
 
     def final_message(team_instance)
-        puts "\nThe #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference.\n"
+        puts "\nThe #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s}ern conference.\n"
         rivals_question(team_instance)
     end
 
@@ -86,6 +86,9 @@ class CLI
             final_team_rivals(team_instance)
         elsif user_input == 'no'
             final_question
+        elsif user_input == 'exit'
+            puts "Goodbye!"
+            exit
         else
             puts "\nThat wasn't an option. Please put yes or no:\n"
             rivals_question
