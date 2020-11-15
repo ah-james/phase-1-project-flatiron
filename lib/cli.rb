@@ -9,8 +9,8 @@ class CLI
     end
 
     def menu
-        puts "How would you like to search?"
-        puts "Please type 'team' or 'hometown'."
+        puts "\nHow would you like to search?"
+        puts "\nPlease type 'team' or 'hometown'."
         user_input = gets.strip.downcase
         if user_input == 'hometown'
             hometowns_array #send to search through cities
@@ -20,14 +20,13 @@ class CLI
             puts "Goodbye!"
         else
             #restarting the program
-            puts "Please try again."
-            puts ''
+            puts "\nPlease try again."
             menu
         end
     end
 
     def hometowns_array
-        puts "Here are the cities that NBA teams play in:"
+        puts "\nHere are the cities that NBA teams play in:"
         hometowns
     end
 
@@ -37,28 +36,27 @@ class CLI
     end
 
     def return_to_menu
-        puts ''
-        puts "If you want to return to the menu, type 'menu', if you want to quit the program, type 'exit', if you want to continue, type 'continue'."
+        puts "\nIf you want to return to the menu, type 'menu', if you want to quit the program, type 'exit', if you want to continue, type 'continue'."
         user_input = gets.strip.downcase
         if user_input == 'menu'
             menu
         elsif user_input == 'exit'
-            puts "Goodbye!"
+            puts "\nGoodbye!"
             exit
         elsif user_input == 'continue'
             user_response
         else
-            puts "please use a valid option"
+            puts "\nplease use a valid option"
             return_to_menu
         end
     end
 
     def user_response
-        puts "Please input a number!"
+        puts "\nPlease input a number!"
         response = gets.strip.to_i - 1
         max_limit = Teams.all.length - 1
         unless response.between?(0, max_limit)
-            puts "That isn't an option, try again!"
+            puts "\nThat isn't an option, try again!"
             user_response
         else
             team_instance = Teams.all[response]
@@ -67,7 +65,7 @@ class CLI
     end
 
     def team_array
-        puts "Here are the teams that play in the NBA:"
+        puts "\nHere are the teams that play in the NBA:"
         teams
     end
 
@@ -77,28 +75,25 @@ class CLI
     end
 
     def final_message(team_instance)
-        puts ''
-        puts "The #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference."
-        puts ''
+        puts "\nThe #{team_instance.name.to_s} play in #{team_instance.city.to_s}. They are a part of the #{team_instance.division.to_s} division in the #{team_instance.conference.to_s} conference.\n"
         rivals_question(team_instance)
     end
 
     def rivals_question(team_instance)
-        puts "Would you like to see your team's rivals? Yes or No:"
+        puts "\nWould you like to see your team's rivals? Yes or No:"
         user_input = gets.strip.downcase
         if user_input == 'yes'
             final_team_rivals(team_instance)
         elsif user_input == 'no'
             final_question
         else
-            puts "That wasn't an option. Please put yes or no:"
-            puts ''
+            puts "\nThat wasn't an option. Please put yes or no:\n"
             rivals_question
         end
     end
 
     def final_team_rivals(team_instance)
-        puts "Your team's rivals are the:"
+        puts "\nYour team's rivals are the:"
         Teams.all.each do |team|
             if team.name == team_instance.name
                 next
@@ -107,19 +102,19 @@ class CLI
                 puts team.name
             end
         end
+        final_question
     end
 
     def final_question
-        puts "Would you like to go again? Yes or No:"
+        puts "\nWould you like to go again? Yes or No:"
         user_input = gets.strip.downcase
         if user_input == 'yes'
             menu
         elsif user_input == 'no'
-            puts "Goodbye!"
+            puts "\nGoodbye!"
             exit
         else
-            puts "That wasn't an option. Please put yes or no:"
-            puts ''
+            puts "\nThat wasn't an option. Please put yes or no:"
             final_question
         end
     end
