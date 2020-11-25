@@ -1,12 +1,7 @@
-# your stand OO ruby class
-
 class Teams
-#    attributes city, conference, division, name
+#    attributes city, division, name
 
     @@all = []
-    @@name = []
-    @@hometown = []
-    @@division = []
 
     def initialize(attributes)
         attributes.each do |key, value| 
@@ -14,9 +9,6 @@ class Teams
             self.send(("#{key}="), value)
         end
         @@all << self
-        @@name << self.name
-        @@hometown << self.city
-        @@division << self.division
     end
 
     def self.all
@@ -24,14 +16,19 @@ class Teams
     end
 
     def self.name
-        @@name
+        self.all.map { |team| team.name}
     end
 
     def self.hometown
-        @@hometown
+        self.all.map { |team| team.city }
     end
 
     def self.division
-        @@division
+        self.all.map { |team| team.division }
+    end
+
+    def self.rivals
+        self.all.select do |variable|
+        end
     end
 end
