@@ -31,4 +31,15 @@ class Teams
         self.all.select do |variable|
         end
     end
+
+    def rivals
+        Teams.division.select do |team|
+            if team.name == team.name
+                next
+            end
+            if team.division == team.division
+                puts team.name
+            end
+        end
+    end
 end

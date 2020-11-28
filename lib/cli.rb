@@ -32,22 +32,15 @@ class CLI
 
     def hometowns
         Teams.hometown.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        return_to_menu
+        user_response
     end
 
-    def return_to_menu
-        puts "\nIf you want to return to the menu, type 'menu', if you want to quit the program, type 'exit', if you want to continue, type 'continue'."
+    def exit_or_menu
         user_input = gets.strip.downcase
-        if user_input == 'menu'
+        if user_input == 'exit'
+            goodbye
+        elsif user_input == 'menu'
             menu
-        elsif user_input == 'exit'
-            puts "\nGoodbye!"
-            exit
-        elsif user_input == 'continue'
-            user_response
-        else
-            puts "\nPlease use a valid option"
-            return_to_menu
         end
     end
 
@@ -62,6 +55,7 @@ class CLI
             team_instance = Teams.all[response]
             final_message(team_instance)
         end  
+        exit_or_menu
     end
 
     def team_array
@@ -71,7 +65,7 @@ class CLI
 
     def teams
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        return_to_menu
+        user_response
     end
 
     def final_message(team_instance)
@@ -83,28 +77,20 @@ class CLI
         puts "\nWould you like to see your team's rivals? Yes or No:"
         user_input = gets.strip.downcase
         if user_input == 'yes'
-            final_team_rivals(team_instance)
+            final_team_rivals
         elsif user_input == 'no'
             final_question
         elsif user_input == 'exit'
-            puts "Goodbye!"
-            exit
+            goodbye
         else
             puts "\nThat wasn't an option. Please put yes or no:\n"
             rivals_question
         end
     end
 
-    def final_team_rivals(team_instance)
+    def final_team_rivals
         puts "\nYour team's rivals are the:"
-        Teams.all.each do |team|
-            if team.name == team_instance.name
-                next
-            end
-            if team.division == team_instance.division
-                puts team.name
-            end
-        end
+        Teams.rivals
         final_question
     end
 
@@ -113,13 +99,17 @@ class CLI
         user_input = gets.strip.downcase
         if user_input == 'yes'
             menu
-        elsif user_input == 'no'
-            puts "\nGoodbye!"
-            exit
+        elsif user_input == 'no' || user_input == 'exit'
+            goodbye
         else
             puts "\nThat wasn't an option. Please put yes or no:"
             final_question
         end
+    end
+
+    def goodbye
+        puts "Goodbye!"
+        exit
     end
 end
 
