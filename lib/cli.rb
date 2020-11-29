@@ -17,9 +17,13 @@ class CLI
         elsif user_input == 'exit'
             goodbye
         else
-            puts "\nPlease try again."
+            error
             menu
         end
+    end
+
+    def error
+        puts "\nThat isn't an option! Please try again?\n"
     end
 
     def goodbye
@@ -34,28 +38,20 @@ class CLI
 
     def hometowns
         Teams.hometown.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_response
+        response
     end
 
-    def exit_or_menu
-        user_input = gets.strip.downcase
-        if user_input == 'exit'
-            goodbye
-        elsif user_input == 'menu'
-            menu
-        end
-    end
-
-    def user_response
+    def response
         puts "\nPlease input a number!"
-        response = gets.strip.to_i - 1               
+        user_input = gets.strip.to_i - 1           
         max_limit = Teams.all.length - 1
-        until response.between?(0, max_limit)
-            puts "\nThat isn't an option, try again!"
-            user_response
+        if user_input.between?(0, max_limit)
+            team_instance = Teams.all[user_input]
+            final_message(team_instance)
+        else
+            error
+            response
         end
-        team_instance = Teams.all[response]
-        final_message(team_instance)
     end
 
     def team_array
@@ -65,7 +61,7 @@ class CLI
 
     def teams
         Teams.name.each_with_index { |key, value| puts "#{value + 1}. #{key}" }
-        user_response
+        response
     end
 
     def final_message(team_instance)
@@ -83,13 +79,12 @@ class CLI
         elsif user_input == 'exit'
             goodbye
         else
-            puts "\nThat wasn't an option. Please put yes or no:\n"
+            error
             rivals_question
         end
     end
 
     def final_team_rivals(team_instance)
-        puts "\nYour team's rivals are the:"
         Teams.rivals(team_instance)
         final_question
     end
@@ -102,9 +97,8 @@ class CLI
         elsif user_input == 'no' || user_input == 'exit'
             goodbye
         else
-            puts "\nThat wasn't an option. Please put yes or no:"
+            error
             final_question
         end
     end
 end
-
