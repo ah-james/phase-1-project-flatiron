@@ -27,17 +27,9 @@ class Teams
         self.all.map { |team| team.division }
     end
 
-    def self.rivals
-        self.all.select do |variable|
-        end
-    end
-
-    def rivals
-        Teams.division.select do |team|
-            if team.name == team.name
-                next
-            end
-            if team.division == team.division
+    def self.rivals(team_instance)
+        self.all.select do |team|
+            if team.name != team_instance.name && team.division == team_instance.division
                 puts team.name
             end
         end

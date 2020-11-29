@@ -1,5 +1,3 @@
-#Command Line Interface
-# interacts with user and connects our files together
 class CLI
 
     def initialize
@@ -13,16 +11,20 @@ class CLI
         puts "\nPlease type 'team' or 'hometown'."
         user_input = gets.strip.downcase
         if user_input == 'hometown'
-            hometowns_array #send to search through cities
+            hometowns_array
         elsif user_input == 'team'
-            team_array #send to search thru teams
+            team_array
         elsif user_input == 'exit'
-            puts "Goodbye!"
+            goodbye
         else
-            #restarting the program
             puts "\nPlease try again."
             menu
         end
+    end
+
+    def goodbye
+        puts "Goodbye!"
+        exit
     end
 
     def hometowns_array
@@ -46,16 +48,14 @@ class CLI
 
     def user_response
         puts "\nPlease input a number!"
-        response = gets.strip.to_i - 1
+        response = gets.strip.to_i - 1               
         max_limit = Teams.all.length - 1
-        unless response.between?(0, max_limit)
+        until response.between?(0, max_limit)
             puts "\nThat isn't an option, try again!"
             user_response
-        else
-            team_instance = Teams.all[response]
-            final_message(team_instance)
-        end  
-        exit_or_menu
+        end
+        team_instance = Teams.all[response]
+        final_message(team_instance)
     end
 
     def team_array
@@ -77,7 +77,7 @@ class CLI
         puts "\nWould you like to see your team's rivals? Yes or No:"
         user_input = gets.strip.downcase
         if user_input == 'yes'
-            final_team_rivals
+            final_team_rivals(team_instance)
         elsif user_input == 'no'
             final_question
         elsif user_input == 'exit'
@@ -88,9 +88,9 @@ class CLI
         end
     end
 
-    def final_team_rivals
+    def final_team_rivals(team_instance)
         puts "\nYour team's rivals are the:"
-        Teams.rivals
+        Teams.rivals(team_instance)
         final_question
     end
 
@@ -105,11 +105,6 @@ class CLI
             puts "\nThat wasn't an option. Please put yes or no:"
             final_question
         end
-    end
-
-    def goodbye
-        puts "Goodbye!"
-        exit
     end
 end
 
