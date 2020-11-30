@@ -29,7 +29,7 @@ class Teams
     def self.rivals(team_instance)
         counter = 0
         print "\nYour team's rivals are the "
-        self.all.select.with_index do |team, i|
+        self.all.select do |team|
             if team.name != team_instance.name && team.division == team_instance.division
                 print team.name
                 counter += 1

@@ -86,7 +86,7 @@ class CLI
     end
 
     def rivals_question(team_instance)
-        sleep 4
+        sleep 3
         puts "\nWould you like to see your team's rivals? Yes or No:".light_blue
         user_input = gets.strip.downcase
         if user_input == 'yes'
