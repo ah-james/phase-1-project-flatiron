@@ -1,5 +1,4 @@
 class Teams
-#    attributes city, division, name
 
     @@all = []
 
@@ -35,9 +34,9 @@ class Teams
                 print team.name
                 counter += 1
                 if counter == 4
-                    print "."
+                    print ".\n"
                 elsif counter == 3
-                    print ", and the "
+                    print ", and "
                 else print ", "
                 end
             end
